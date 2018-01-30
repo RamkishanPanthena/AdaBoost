@@ -61,7 +61,7 @@ model.plot_round_error()
 
 ## Results
 
-Train error, Test error and Test AUC after every 25 iterations -
+Train error, Test error and Test AUC after every 25 iterations:
 
  - Round 0   : __Train_err__: 0.20760869565217388 __Test_err__: 0.21064060803474483 __AUC__: 0.748974795114
  - Round 25  : __Train_err__: 0.06766304347826091 __Test_err__: 0.07600434310532034 __AUC__: 0.978207515077
@@ -69,7 +69,7 @@ Train error, Test error and Test AUC after every 25 iterations -
  - Round 75  : __Train_err__: 0.056793478260869557 __Test_err__: 0.06297502714440828 __AUC__: 0.984188340807
  - Round 100 : __Train_err__: 0.05461956521739131 __Test_err__: 0.061889250814332275 __AUC__: 0.985246946034
 
-### Graph of Train/Test Error, ROC Curve, Round Error vs number of iterations
+Graph of Train/Test Error, ROC Curve, Round Error vs number of iterations:
 
 ![title](img/output_12_0.png)
 
