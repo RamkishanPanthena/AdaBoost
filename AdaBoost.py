@@ -52,16 +52,16 @@ class AdaBoost:
         self.te_err = []
         self.rd_err = []
         for i in range(0, self.iterations):
-            self.bestDecisionStump() # Train a weak learner which is a single decision stump
+            self.bestDecisionStump()                                        # Train a weak learner which is a single decision stump
             train_err = self.calc_error(self.train_labels, self.train_H[0]) # Calculate the train error
-            test_err = self.calc_error(self.test_labels, self.test_H[0]) # Calculate the test error
-            self.tr_err.append(train_err) # Store the train,test and round errors obtained in every iteration
+            test_err = self.calc_error(self.test_labels, self.test_H[0])    # Calculate the test error
+            self.tr_err.append(train_err)                                   # Store the train,test and round errors obtained in every iteration
             self.te_err.append(test_err)
             self.rd_err.append(self.epsilon)
             self.fpr, self.tpr, thresholds = metrics.roc_curve(self.train_labels, self.train_H[0])
-            auc = np.trapz(self.tpr, self.fpr) # Calculate the AUC value for the current iteration
+            auc = np.trapz(self.tpr, self.fpr)                              # Calculate the AUC value for the current iteration
             print("Round:", i+1, "Train_err:", train_err, "Test_err:", test_err, "AUC:", auc) # Print the train/test error and AUC values after each iteration
-            self.updateWeights() # Update weights based on the results of the current iteration
+            self.updateWeights()                                            # Update weights based on the results of the current iteration
     
     # Initialize weights
     def initializeWeights(self, train):
