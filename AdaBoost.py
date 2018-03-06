@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 # AdaBoost
 class AdaBoost:
-    def __init__(self, iterations):
+    def __init__(self, iterations = 100):
         self.train_df = None
         self.test_df = None
         self.train_labels = None
