@@ -18,7 +18,7 @@ class AdaBoost:
         self.test_labels = None
         self.train_predictions = None
         self.test_predictions = None
-        self.thresholds_dict = None
+        self.thresholds_dict = None #
         self.train_hx_dict = None
         self.columnname = None
         self.colsplitvalue = None
@@ -52,18 +52,16 @@ class AdaBoost:
         self.te_err = []
         self.rd_err = []
         for i in range(0, self.iterations):
-            self.bestDecisionStump()
-            train_err = self.calc_error(self.train_labels, self.train_H[0])
-            test_err = self.calc_error(self.test_labels, self.test_H[0])
-            self.tr_err.append(train_err)
+            self.bestDecisionStump() # Train a weak learner which is a single decision stump
+            train_err = self.calc_error(self.train_labels, self.train_H[0]) # Calculate the train error
+            test_err = self.calc_error(self.test_labels, self.test_H[0]) # Calculate the test error
+            self.tr_err.append(train_err) # Store the train,test and round errors obtained in every iteration
             self.te_err.append(test_err)
             self.rd_err.append(self.epsilon)
             self.fpr, self.tpr, thresholds = metrics.roc_curve(self.train_labels, self.train_H[0])
-            auc = np.trapz(self.tpr, self.fpr)
-            #print("Round:", i+1, "Feature:", self.columnname, "Threshold:", self.colsplitvalue, "Round_err:", self.epsilon, "Train_err:", train_err, "Test_err:", test_err, "AUC:", auc)
-            print("Round:", i+1)
-            #print("Train_err:", train_err, "Test_err:", test_err, "AUC:", auc)
-            self.updateWeights()
+            auc = np.trapz(self.tpr, self.fpr) # Calculate the AUC value for the current iteration
+            print("Round:", i+1, "Train_err:", train_err, "Test_err:", test_err, "AUC:", auc) # Print the train/test error and AUC values after each iteration
+            self.updateWeights() # Update weights based on the results of the current iteration
     
     # Initialize weights
     def initializeWeights(self, train):
@@ -103,7 +101,7 @@ class AdaBoost:
 
         self.thresholds_dict = thresholds
     
-    # Compute predictions for all threshold values        
+    # Compute predictions for all threshold values
     def calc_hx(self):
         df = self.train_df
         thresholds_dict = self.thresholds_dict
